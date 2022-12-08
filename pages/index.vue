@@ -1,14 +1,12 @@
-<script setup>
+<script setup lang="ts">
 
 </script>
 
 <template>
-  <div class="w-screen h-screen grid place-items-center">
-    <div class="flex flex-col items-center gap-5">
-      <TestButton/>
-      <TestAlert/>
-    </div>
-  </div>
+  <HomeHero/>
+  <HomeCommands/>
+  <div class="h-screen w-full bg-orange-500"></div>
+  <div class="h-screen w-full bg-rose-500"></div>
 </template>
 
 <style scoped>
