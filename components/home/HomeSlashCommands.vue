@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import gsap from 'gsap'
-import IconSlashDiscord from "~/components/icon/IconSlashDiscord.vue";
 
 const index = ref<number>(0)
 const interval = ref<number>(1000)
@@ -36,8 +35,10 @@ gsap.registerEffect({
     tl.add(() => targets[0].innerText = config.text)
     tl.to(targets, {
       opacity: 1,
+      y: 0,
       duration: config.duration
     })
+    tl.add(nextMessage)
   },
   defaults: {
     duration: 1
@@ -60,14 +61,12 @@ onMounted(() => {
     text: messages[currentMessage.value],
     delay: 2
   })
-  nextMessage()
 
   setInterval(() => {
     tl.swapText('.message', {
       text: messages[currentMessage.value],
       delay: 3
     })
-    nextMessage()
   }, 3000)
 })
 
@@ -91,23 +90,19 @@ onMounted(() => {
             <IconStar/>
           </span>
         <span class="magic-text">
-          slash commands
+          slash commands !
         </span>
       </span>
-      !
     </h2>
     <div>
       <div class="text-center text-xl">
         <p>Why would you need a fancy experience or RPG bot when you can ...</p>
-        <span class="message font-semibold">know how long your penis is !</span>
+        <span class="message font-semibold translate-y-5">know how long your penis is !</span>
       </div>
     </div>
     <div class="text-center mt-8">
-      <p class="mb-2 text-xl">Wanna give it a <span class="font-abril text-3xl">try</span> ?</p>
-      <div class="relative">
-        <IconSlashDiscord class="absolute top-1.5 left-1.5"/>
-        <input type="text" class="w-[400px] p-3 pl-12 text-gray-100 bg-[#40444b] rounded focus-visible:outline-none">
-      </div>
+      <p class="mb-2 text-xl">Wanna give it a <span class="font-abril text-3xl text-primary-500">try</span> ?</p>
+      <HomeSlashSearch/>
     </div>
   </section>
 </template>
@@ -149,7 +144,7 @@ onMounted(() => {
 
 @keyframes background-pan {
   from {
-    background-position: 0% center;
+    background-position: 0 center;
   }
   to {
     background-position: -200% center;

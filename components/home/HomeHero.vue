@@ -8,10 +8,16 @@ onMounted(() => {
     y: 0
   })
 
-  gsap.to('.hero-title', {
-    y: 500,
-    fontSize: 400,
+  gsap.fromTo('.hero-title', {
+    y: 0
+  }, {
+    y: 200,
+    fontSize: 300,
+    immediateRender: false,
     scrollTrigger: {
+      start: '100% 100%',
+      end: '100% 0',
+      trigger: '.hero-section',
       scrub: true
     }
   })
